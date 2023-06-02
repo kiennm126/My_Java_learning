@@ -258,5 +258,89 @@ public class UIManager {
         }
     }
 
+    public static void getStudentsWithHighGPA() {
+        System.out.print("Enter faculty name: ");
+        String facultyName = scanner.nextLine();
 
+        Faculty faculty = findFacultyByName(facultyName);
+        if (faculty == null) {
+            System.out.println("Faculty not found.");
+            return;
+        }
+
+        List<Student> studentsWithHighGPA = faculty.getStudentsWithHighGPA();
+
+        if (studentsWithHighGPA.isEmpty()) {
+            System.out.println("No students found with a GPA of 3.2 or higher in the latest semester.");
+        } else {
+            System.out.println("Students with a GPA of 3.2 or higher in the latest semester:");
+            for (Student student : studentsWithHighGPA) {
+                System.out.println("Student ID: " + student.getStudentID());
+                System.out.println("Full Name: " + student.getFullName());
+                System.out.println("Latest Semester: " + student.getAcademicResult().getSemester());
+                System.out.println("GPA: " + student.getAcademicResult().getGpa());
+            }
+        }
+    }
+
+    public static void findStudentWithHighestSemesterGPA() {
+        System.out.print("Enter faculty name: ");
+        String facultyName = scanner.nextLine();
+
+        Faculty faculty = findFacultyByName(facultyName);
+        if (faculty == null) {
+            System.out.println("Faculty not found.");
+            return;
+        }
+
+        Student studentWithHighestGPA = faculty.getStudentWithHighestSemesterGPA();
+
+        if (studentWithHighestGPA != null) {
+            System.out.println("Student with the highest semester GPA in " + facultyName + ":");
+            System.out.println("Student ID: " + studentWithHighestGPA.getStudentID());
+            System.out.println("Full Name: " + studentWithHighestGPA.getFullName());
+            System.out.println("GPA: " + studentWithHighestGPA.getAcademicResult().getGpa());
+        } else {
+            System.out.println("No students found in " + facultyName);
+        }
+    }
+
+    public static void sortStudentsInFaculty() {
+        System.out.print("Enter faculty name: ");
+        String facultyName = scanner.nextLine();
+
+        Faculty faculty = findFacultyByName(facultyName);
+        if (faculty == null) {
+            System.out.println("Faculty not found.");
+            return;
+        }
+
+        faculty.sortStudents();
+
+        System.out.println("Sorted list of students in " + facultyName + ":");
+        for (Student student : faculty.getStudents()) {
+            System.out.println("Student ID: " + student.getStudentID());
+            System.out.println("Full Name: " + student.getFullName());
+            System.out.println("GPA: " + student.getAcademicResult().getGpa());
+            System.out.println("Year of Entry: " + student.getYearOfEntry());
+        }
+    }
+
+    public static void displayStudentCountByYearOfEntry() {
+        System.out.print("Enter faculty name: ");
+        String facultyName = scanner.nextLine();
+
+        Faculty faculty = findFacultyByName(facultyName);
+        if (faculty == null) {
+            System.out.println("Faculty not found.");
+            return;
+        }
+
+        Map<Integer, Integer> countByYear = faculty.getStudentCountByYearOfEntry();
+
+        System.out.println("Number of students by year of entry in " + facultyName + ":");
+        for (Map.Entry<Integer, Integer> entry : countByYear.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
 }
