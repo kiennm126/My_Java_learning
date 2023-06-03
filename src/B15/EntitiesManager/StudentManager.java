@@ -22,15 +22,6 @@ public class StudentManager {
         faculties.add(faculty);
     }
 
-    public void addStudentToFaculty(Student student, String facultyName) {
-        for (Faculty faculty : faculties) {
-            if (faculty.getName().equalsIgnoreCase(facultyName)) {
-                faculty.addStudent(student);
-                break;
-            }
-        }
-    }
-
     public boolean removeStudentByID(String studentID) {
         for (Faculty faculty : faculties) {
             if (faculty.removeStudentByID(studentID)) {
