@@ -34,7 +34,7 @@ public class TeacherManagement {
         if (teacher == null) {
             return 0;
         }
-        return teacher.getSalary() + teacher.getBonus() + teacher.getPenalty();
+        return teacher.getSalary() + teacher.getBonus() - teacher.getPenalty();
     }
 
     public void showCustomerList() {
